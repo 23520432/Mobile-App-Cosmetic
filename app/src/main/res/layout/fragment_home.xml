@@ -1,0 +1,476 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cream"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- HERO -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_hero">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center_vertical"
+                android:padding="24dp">
+
+                <TextView
+                    android:id="@+id/tvHeroBadge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_hero_badge"
+                    android:paddingStart="14dp"
+                    android:paddingEnd="14dp"
+                    android:paddingTop="6dp"
+                    android:paddingBottom="6dp"
+                    android:text="@string/hero_badge"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/dark2"
+                    android:letterSpacing="0.05"
+                    android:layout_marginBottom="16dp" />
+
+                <TextView
+                    android:layout_width="220dp"
+                    android:layout_height="wrap_content"
+                    android:text="Vẻ đẹp thăng hoa"
+                    android:textSize="35sp"
+                    android:fontFamily="serif"
+                    android:textStyle="bold"
+                    android:textColor="@color/dark"
+                    android:lineSpacingMultiplier="1.1" />  <!--Khoảng cách giãn dòng-->
+
+                <TextView
+                    android:layout_width="220dp"
+                    android:layout_height="wrap_content"
+                    android:text="tự nhiên"
+                    android:textSize="35sp"
+                    android:fontFamily="serif"
+                    android:textStyle="bold|italic"
+                    android:textColor="@color/lilac3"
+                    android:lineSpacingMultiplier="1.1"
+                    android:layout_marginBottom="12dp" />
+
+                <TextView
+                    android:layout_width="220dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/hero_subtitle"
+                    android:textSize="16sp"
+                    android:textColor="@color/dark2"
+                    android:lineSpacingMultiplier="1.5"
+                    android:layout_marginBottom="20dp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btnExplore"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/btn_explore"
+                        android:background="@drawable/bg_btn_primary"
+                        android:textColor="@color/white"
+                        android:textSize="13sp"
+                        android:textStyle="bold"
+                        android:paddingStart="18dp"
+                        android:paddingEnd="18dp"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:layout_marginEnd="10dp"
+                        android:stateListAnimator="@null" />
+
+                    <Button
+                        android:id="@+id/btnCampaigns"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/btn_campaigns"
+                        android:background="@drawable/bg_btn_secondary"
+                        android:textColor="@color/dark2"
+                        android:textSize="13sp"
+                        android:textStyle="bold"
+                        android:paddingStart="15dp"
+                        android:paddingEnd="15dp"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:stateListAnimator="@null" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Product bottle illustration -->
+            <LinearLayout
+                android:layout_width="90dp"
+                android:layout_height="140dp"
+                android:layout_gravity="end|bottom"
+                android:layout_marginEnd="16dp"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="@drawable/bg_card_pink">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ROSE\nSÉRUM"
+                    android:textSize="12sp"
+                    android:fontFamily="serif"
+                    android:textStyle="bold"
+                    android:textColor="@color/dark2"
+                    android:gravity="center"
+                    android:lineSpacingMultiplier="1.3" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🌹"
+                    android:textSize="20sp"
+                    android:layout_marginTop="8dp" />
+
+            </LinearLayout>
+        </FrameLayout>
+
+        <!-- Scroll dots -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:background="@color/white">
+
+            <View android:layout_width="20dp" android:layout_height="6dp"
+                android:background="@drawable/bg_badge" android:layout_marginEnd="6dp" />
+            <View android:layout_width="6dp" android:layout_height="6dp"
+                android:background="@drawable/bg_badge" android:alpha="0.3" android:layout_marginEnd="6dp" />
+            <View android:layout_width="6dp" android:layout_height="6dp"
+                android:background="@drawable/bg_badge" android:alpha="0.3" />
+        </LinearLayout>
+
+        <!-- Brand Strip -->
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/petal"
+            android:scrollbars="none"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Lumière Paris" android:textSize="13sp" android:fontFamily="serif"
+                    android:textStyle="bold" android:textColor="@color/dark2" android:alpha="0.6"
+                    android:letterSpacing="0.1" android:paddingStart="24dp" android:paddingEnd="24dp" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="✦" android:textSize="13sp" android:textColor="@color/gold" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Rose Atelier" android:textSize="13sp" android:fontFamily="serif"
+                    android:textStyle="bold" android:textColor="@color/dark2" android:alpha="0.6"
+                    android:letterSpacing="0.1" android:paddingStart="24dp" android:paddingEnd="24dp" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="✦" android:textSize="13sp" android:textColor="@color/gold" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Velvet Skin" android:textSize="13sp" android:fontFamily="serif"
+                    android:textStyle="bold" android:textColor="@color/dark2" android:alpha="0.6"
+                    android:letterSpacing="0.1" android:paddingStart="24dp" android:paddingEnd="24dp" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="✦" android:textSize="13sp" android:textColor="@color/gold" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Botanica Luxe" android:textSize="13sp" android:fontFamily="serif"
+                    android:textStyle="bold" android:textColor="@color/dark2" android:alpha="0.6"
+                    android:letterSpacing="0.1" android:paddingStart="24dp" android:paddingEnd="24dp" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="✦" android:textSize="13sp" android:textColor="@color/gold" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Pure Éclat" android:textSize="13sp" android:fontFamily="serif"
+                    android:textStyle="bold" android:textColor="@color/dark2" android:alpha="0.6"
+                    android:letterSpacing="0.1" android:paddingStart="24dp" android:paddingEnd="24dp" />
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <!-- Features -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:paddingTop="24dp"
+            android:paddingBottom="8dp">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="@string/features_title"
+                android:textSize="20sp"
+                android:fontFamily="serif"
+                android:textStyle="bold"
+                android:textColor="@color/dark" />
+        </LinearLayout>
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="2"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:paddingBottom="24dp">
+
+            <!-- Feature Card 1 -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_margin="6dp"
+                android:orientation="vertical"
+                android:background="@drawable/bg_card_pink"
+                android:padding="20dp"
+                android:clickable="true"
+                android:focusable="true">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="🌸" android:textSize="28sp" android:layout_marginBottom="10dp" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Phân tích da AI" android:textSize="15sp"
+                    android:fontFamily="serif" android:textStyle="bold" android:textColor="@color/dark"
+                    android:layout_marginBottom="4dp" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Chẩn đoán &amp; gợi ý sản phẩm phù hợp"
+                    android:textSize="11sp" android:textColor="@color/dark2"
+                    android:lineSpacingMultiplier="1.4" android:alpha="0.8" />
+            </LinearLayout>
+
+            <!-- Feature Card 2 -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_margin="6dp"
+                android:orientation="vertical"
+                android:background="@drawable/bg_card_lilac"
+                android:padding="20dp"
+                android:clickable="true"
+                android:focusable="true">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="💎" android:textSize="28sp" android:layout_marginBottom="10dp" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="VIP Member" android:textSize="15sp"
+                    android:fontFamily="serif" android:textStyle="bold" android:textColor="@color/dark"
+                    android:layout_marginBottom="4dp" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Tích điểm &amp; quà tặng độc quyền"
+                    android:textSize="11sp" android:textColor="@color/dark2"
+                    android:lineSpacingMultiplier="1.4" android:alpha="0.8" />
+            </LinearLayout>
+
+            <!-- Feature Card 3 -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_margin="6dp"
+                android:orientation="vertical"
+                android:background="@drawable/bg_card_sage"
+                android:padding="20dp"
+                android:clickable="true"
+                android:focusable="true">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="🌿" android:textSize="28sp" android:layout_marginBottom="10dp" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Thành phần sạch" android:textSize="15sp"
+                    android:fontFamily="serif" android:textStyle="bold" android:textColor="@color/dark"
+                    android:layout_marginBottom="4dp" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="100% organic, không paraben"
+                    android:textSize="11sp" android:textColor="@color/dark2"
+                    android:lineSpacingMultiplier="1.4" android:alpha="0.8" />
+            </LinearLayout>
+
+            <!-- Feature Card 4 -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_margin="6dp"
+                android:orientation="vertical"
+                android:background="@drawable/bg_card_gold"
+                android:padding="20dp"
+                android:clickable="true"
+                android:focusable="true">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="✨" android:textSize="28sp" android:layout_marginBottom="10dp" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="AR Thử màu" android:textSize="15sp"
+                    android:fontFamily="serif" android:textStyle="bold" android:textColor="@color/dark"
+                    android:layout_marginBottom="4dp" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Thử son &amp; phấn ngay trên app"
+                    android:textSize="11sp" android:textColor="@color/dark2"
+                    android:lineSpacingMultiplier="1.4" android:alpha="0.8" />
+            </LinearLayout>
+
+        </GridLayout>
+
+        <!-- Best Sellers Header -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:paddingBottom="18dp"
+            android:gravity="center_vertical">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="@string/best_sellers"
+                android:textSize="20sp"
+                android:fontFamily="serif"
+                android:textStyle="bold"
+                android:textColor="@color/dark" />
+            <TextView
+                android:id="@+id/tvSeeMore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/see_more"
+                android:textSize="12sp"
+                android:textColor="@color/lilac3"
+                android:textStyle="bold"
+                android:clickable="true"
+                android:focusable="true" />
+        </LinearLayout>
+
+        <!-- Products Horizontal Scroll -->
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp">
+            <LinearLayout
+                android:id="@+id/llProductsRow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" />
+        </HorizontalScrollView>
+
+        <!-- Membership Section -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/lilac"
+            android:padding="20dp"
+            android:layout_marginTop="24dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/membership_title"
+                android:textSize="20sp"
+                android:fontFamily="serif"
+                android:textStyle="bold"
+                android:textColor="@color/dark"
+                android:layout_marginBottom="14dp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@color/white"
+                android:padding="4dp"
+                android:layout_marginBottom="16dp">
+                <Button android:id="@+id/btnMonthly"
+                    android:layout_width="wrap_content" android:layout_height="36dp"
+                    android:text="@string/monthly" android:textSize="13sp"
+                    android:background="@drawable/bg_btn_primary"
+                    android:textColor="@color/white" android:paddingStart="16dp" android:paddingEnd="16dp"
+                    android:stateListAnimator="@null" />
+                <Button android:id="@+id/btnYearly"
+                    android:layout_width="wrap_content" android:layout_height="36dp"
+                    android:text="@string/yearly" android:textSize="13sp"
+                    android:background="@android:color/transparent"
+                    android:textColor="@color/dark2" android:paddingStart="16dp" android:paddingEnd="16dp"
+                    android:stateListAnimator="@null" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <!-- Essential -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/bg_btn_secondary"
+                    android:padding="16dp"
+                    android:layout_marginEnd="8dp">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="Essential" android:textSize="14sp"
+                        android:textColor="@color/mid" android:layout_marginBottom="8dp" />
+                    <TextView android:id="@+id/tvPrice1"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="149k" android:textSize="24sp"
+                        android:textStyle="bold" android:textColor="@color/dark" />
+                    <TextView android:id="@+id/tvPer1"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="/tháng" android:textSize="12sp" android:textColor="@color/mid"
+                        android:layout_marginBottom="12dp" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="✓ Tích điểm cơ bản\n✓ Ưu đãi sinh nhật\n✓ Newsletter"
+                        android:textSize="12sp" android:textColor="@color/dark2"
+                        android:lineSpacingMultiplier="1.8" />
+                </LinearLayout>
+
+                <!-- Premium -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/bg_btn_primary"
+                    android:padding="16dp">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="✦ Phổ biến nhất" android:textSize="11sp"
+                        android:textColor="@color/gold2" android:layout_marginBottom="4dp" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="Premium" android:textSize="14sp"
+                        android:textColor="@color/white" android:layout_marginBottom="8dp" />
+                    <TextView android:id="@+id/tvPrice2"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="299k" android:textSize="24sp"
+                        android:textStyle="bold" android:textColor="@color/white" />
+                    <TextView android:id="@+id/tvPer2"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="/tháng" android:textSize="12sp" android:textColor="@color/light_purple"
+                        android:layout_marginBottom="12dp" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="✓ Tích điểm x2\n✓ Quà tặng hàng tháng\n✓ Tư vấn 1-1\n✓ Early access"
+                        android:textSize="12sp" android:textColor="@color/white"
+                        android:lineSpacingMultiplier="1.8" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <View android:layout_width="match_parent" android:layout_height="16dp" />
+
+    </LinearLayout>
+</ScrollView>

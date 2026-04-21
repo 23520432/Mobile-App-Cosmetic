@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cream">
+
+    <!-- Toolbar -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white_alpha60"
+        android:elevation="0dp"
+        app:layout_scrollFlags="scroll|enterAlways|snap">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp">
+
+            <TextView
+                android:id="@+id/tvLogo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="Luxe"
+                android:textSize="20sp"
+                android:fontFamily="serif"
+                android:textStyle="bold"
+                android:textColor="@color/dark" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:spacing="12dp">
+
+                <FrameLayout
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                    android:layout_marginEnd="12dp">
+
+                    <ImageButton
+                        android:id="@+id/btnNotification"
+                        android:layout_width="38dp"
+                        android:layout_height="38dp"
+                        android:background="@drawable/bg_card_lilac"
+                        android:src="@drawable/ic_bell"
+                        android:padding="9dp"
+                        android:scaleType="center" />
+
+                    <View
+                        android:id="@+id/notifDot"
+                        android:layout_width="10dp"
+                        android:layout_height="10dp"
+                        android:layout_gravity="top|end"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginEnd="4dp"
+                        android:background="@drawable/bg_badge_red" />
+
+                </FrameLayout>
+
+                <TextView
+                    android:id="@+id/tvAvatar"
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                    android:background="@drawable/bg_avatar"
+                    android:gravity="center"
+                    android:text="NH"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
+        </RelativeLayout>
+    </androidx.appcompat.widget.Toolbar>
+
+    <!-- Fragment Container -->
+    <FrameLayout
+        android:id="@+id/fragmentContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="56dp"
+        android:layout_marginBottom="72dp" />
+
+    <!-- Bottom Navigation -->
+    <LinearLayout
+        android:id="@+id/bottomNav"
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:layout_gravity="bottom"
+        android:background="@drawable/bg_nav"
+        android:orientation="horizontal"
+        android:elevation="16dp"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp">
+
+        <LinearLayout android:id="@+id/tabHome"
+            android:layout_width="0dp" android:layout_height="match_parent"
+            android:layout_weight="1" android:orientation="vertical"
+            android:gravity="center" android:clickable="true"
+            android:focusable="true">
+            <FrameLayout android:id="@+id/tabHomeIcon"
+                android:layout_width="44dp" android:layout_height="28dp"
+                android:gravity="center">
+                <TextView android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="🏠" android:textSize="19sp" />
+            </FrameLayout>
+            <TextView android:id="@+id/tabHomeLabel"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="@string/tab_home" android:textSize="10sp"
+                android:textColor="@color/lilac3" android:textStyle="bold"
+                android:layout_marginTop="2dp" />
+        </LinearLayout>
+
+        <LinearLayout android:id="@+id/tabProducts"
+            android:layout_width="0dp" android:layout_height="match_parent"
+            android:layout_weight="1" android:orientation="vertical"
+            android:gravity="center" android:clickable="true" android:focusable="true">
+            <FrameLayout android:id="@+id/tabProductsIcon"
+                android:layout_width="44dp" android:layout_height="28dp"
+                android:gravity="center">
+                <TextView android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="🛍️" android:textSize="19sp" />
+            </FrameLayout>
+            <TextView android:id="@+id/tabProductsLabel"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="@string/tab_products" android:textSize="10sp"
+                android:textColor="@color/mid"
+                android:layout_marginTop="2dp" />
+        </LinearLayout>
+
+        <LinearLayout android:id="@+id/tabOffers"
+            android:layout_width="0dp" android:layout_height="match_parent"
+            android:layout_weight="1" android:orientation="vertical"
+            android:gravity="center" android:clickable="true" android:focusable="true">
+            <FrameLayout android:id="@+id/tabOffersIcon"
+                android:layout_width="44dp" android:layout_height="28dp"
+                android:gravity="center">
+                <TextView android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="🎁" android:textSize="19sp" />
+            </FrameLayout>
+            <TextView android:id="@+id/tabOffersLabel"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="@string/tab_offers" android:textSize="10sp"
+                android:textColor="@color/mid"
+                android:layout_marginTop="2dp" />
+        </LinearLayout>
+
+        <LinearLayout android:id="@+id/tabCampaigns"
+            android:layout_width="0dp" android:layout_height="match_parent"
+            android:layout_weight="1" android:orientation="vertical"
+            android:gravity="center" android:clickable="true" android:focusable="true">
+            <FrameLayout android:id="@+id/tabCampaignsIcon"
+                android:layout_width="44dp" android:layout_height="28dp"
+                android:gravity="center">
+                <TextView android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="📊" android:textSize="19sp" />
+            </FrameLayout>
+            <TextView android:id="@+id/tabCampaignsLabel"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="@string/tab_campaigns" android:textSize="10sp"
+                android:textColor="@color/mid"
+                android:layout_marginTop="2dp" />
+        </LinearLayout>
+
+        <LinearLayout android:id="@+id/tabProfile"
+            android:layout_width="0dp" android:layout_height="match_parent"
+            android:layout_weight="1" android:orientation="vertical"
+            android:gravity="center" android:clickable="true" android:focusable="true">
+            <FrameLayout android:id="@+id/tabProfileIcon"
+                android:layout_width="44dp" android:layout_height="28dp"
+                android:gravity="center">
+                <TextView android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="👤" android:textSize="19sp" />
+            </FrameLayout>
+            <TextView android:id="@+id/tabProfileLabel"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="@string/tab_profile" android:textSize="10sp"
+                android:textColor="@color/mid"
+                android:layout_marginTop="2dp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

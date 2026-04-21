@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Luxe Cosmetics</string>
+    <string name="tab_home">Trang chủ</string>
+    <string name="tab_products">Sản phẩm</string>
+    <string name="tab_offers">Ưu đãi</string>
+    <string name="tab_campaigns">Chiến dịch</string>
+    <string name="tab_profile">Hồ sơ</string>
+    <string name="hero_badge">✦ COLLECTION MỚI 2025</string>
+    <string name="hero_title">Vẻ đẹp thăng hoa tự nhiên</string>
+    <string name="hero_subtitle">Công thức độc quyền từ 12 loại hoa quý hiếm</string>
+    <string name="btn_explore">Khám phá ngay</string>
+    <string name="btn_campaigns">Chiến dịch</string>
+    <string name="best_sellers">Bán chạy nhất</string>
+    <string name="features_title">Tính năng nổi bật</string>
+    <string name="membership_title">Gói thành viên</string>
+    <string name="monthly">Hàng tháng</string>
+    <string name="yearly">Hàng năm</string>
+    <string name="flash_sale_title">Flash Sale hôm nay</string>
+    <string name="timer_ends">Kết thúc sau</string>
+    <string name="see_more">Xem thêm →</string>
+    <string name="profile_name">Nguyễn Ngọc Hân</string>
+    <string name="profile_tier">✦ Gold Member</string>
+    <string name="filter_all">Tất cả</string>
+    <string name="filter_skincare">Dưỡng da</string>
+    <string name="filter_makeup">Trang điểm</string>
+    <string name="filter_eye">Chăm sóc mắt</string>
+    <string name="filter_body">Body</string>
+    <string name="campaign_running">Đang chạy</string>
+    <string name="campaign_upcoming">Sắp ra mắt</string>
+    <string name="campaign_ended">Đã kết thúc</string>
+    <string name="notifications_title">Thông báo</string>
+    <string name="add_to_cart">+</string>
+    <string name="back">Quay lại</string>
+</resources>
