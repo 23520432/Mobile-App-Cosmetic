@@ -12,7 +12,7 @@
         <!-- Product Hero Image -->
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="300dp">
+            android:layout_height="500dp">
 
             <LinearLayout
                 android:id="@+id/detailImgBg"
@@ -102,7 +102,8 @@
             </LinearLayout>
 
             <!-- Description -->
-            <TextView android:layout_width="match_parent"
+            <TextView android:id="@+id/tvDetailDescription"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Sérum dưỡng da cao cấp với công thức độc quyền từ hoa hồng Bulgaria. Cung cấp độ ẩm sâu, làm sáng da và giảm nếp nhăn hiệu quả sau 4 tuần sử dụng."
                 android:textSize="14sp" android:textColor="@color/dark2"
@@ -120,21 +121,24 @@
                 android:orientation="horizontal"
                 android:layout_marginBottom="24dp">
 
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                <TextView android:id="@+id/tvIngredient1"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
                     android:background="@drawable/bg_hero_badge"
                     android:paddingStart="12dp" android:paddingEnd="12dp"
                     android:paddingTop="6dp" android:paddingBottom="6dp"
                     android:text="🌹 Rosa Extract" android:textSize="12sp"
                     android:textColor="@color/dark2" android:layout_marginEnd="8dp" />
 
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                <TextView android:id="@+id/tvIngredient2"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
                     android:background="@drawable/bg_hero_badge"
                     android:paddingStart="12dp" android:paddingEnd="12dp"
                     android:paddingTop="6dp" android:paddingBottom="6dp"
                     android:text="💧 Hyaluronic" android:textSize="12sp"
                     android:textColor="@color/dark2" android:layout_marginEnd="8dp" />
 
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                <TextView android:id="@+id/tvIngredient3"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
                     android:background="@drawable/bg_hero_badge"
                     android:paddingStart="12dp" android:paddingEnd="12dp"
                     android:paddingTop="6dp" android:paddingBottom="6dp"
@@ -149,7 +153,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="52dp"
                 android:background="@drawable/bg_btn_primary"
-                android:text="Thêm vào giỏ hàng"
+                android:text="Bấm để mua sản phẩm"
                 android:textColor="@color/white"
                 android:textSize="15sp"
                 android:textStyle="bold"

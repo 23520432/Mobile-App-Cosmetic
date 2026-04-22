@@ -6,6 +6,8 @@ import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.marketingcosmetics.R;
 
+import java.util.ArrayList;
+
 public class ProductDetailActivity extends AppCompatActivity {
 
     @Override
@@ -22,6 +24,8 @@ public class ProductDetailActivity extends AppCompatActivity {
         String bottle   = getIntent().getStringExtra("bottleName");
         String emoji    = getIntent().getStringExtra("emoji");
         int    bgType   = getIntent().getIntExtra("bgType", 1);
+        String description = getIntent().getStringExtra("description");
+        ArrayList<String> ingredients = getIntent().getStringArrayListExtra("ingredients");
 
         // Bind views
         ((TextView) findViewById(R.id.tvDetailName)).setText(name != null ? name : "");
@@ -29,6 +33,20 @@ public class ProductDetailActivity extends AppCompatActivity {
         ((TextView) findViewById(R.id.tvDetailPrice)).setText(price != null ? price : "");
         ((TextView) findViewById(R.id.tvDetailBottleName)).setText(bottle != null ? bottle : "");
         ((TextView) findViewById(R.id.tvDetailEmoji)).setText(emoji != null ? emoji : "");
+        ((TextView) findViewById(R.id.tvDetailDescription)).setText(description != null ? description : "");
+
+        TextView tvIng1 = findViewById(R.id.tvIngredient1);
+        TextView tvIng2 = findViewById(R.id.tvIngredient2);
+        TextView tvIng3 = findViewById(R.id.tvIngredient3);
+
+        if (ingredients != null) {
+            if (ingredients.size() > 0) { tvIng1.setText(ingredients.get(0));
+                tvIng1.setVisibility(android.view.View.VISIBLE); } else { tvIng1.setVisibility(android.view.View.GONE); }
+            if (ingredients.size() > 1) { tvIng2.setText(ingredients.get(1));
+                tvIng2.setVisibility(android.view.View.VISIBLE); } else { tvIng2.setVisibility(android.view.View.GONE); }
+            if (ingredients.size() > 2) { tvIng3.setText(ingredients.get(2));
+                tvIng3.setVisibility(android.view.View.VISIBLE); } else { tvIng3.setVisibility(android.view.View.GONE); }
+        }
 
         // Old price
         TextView tvOld = findViewById(R.id.tvDetailOldPrice);
