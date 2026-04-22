@@ -1,0 +1,48 @@
+package com.example.marketingcosmetics.models;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+
+public class Product implements Serializable {
+    private String name;
+    private String brand;
+    private String price;
+    private String oldPrice;
+    private String badge;
+    private String bottleName;
+    private String emoji;
+    private int bgType; // 1=pink, 2=lilac, 3=green, 4=gold
+    private String category;
+
+    private String description;
+    private ArrayList<String> ingredients;
+
+    public Product(String name, String brand, String price, String oldPrice,
+                   String badge, String bottleName, String emoji, int bgType, String category,
+                   String description, ArrayList<String> ingredients) {
+        this.name = name;
+        this.brand = brand;
+        this.price = price;
+        this.oldPrice = oldPrice;
+        this.badge = badge;
+        this.bottleName = bottleName;
+        this.emoji = emoji;
+        this.bgType = bgType;
+        this.category = category;
+        this.description = description;
+        this.ingredients = ingredients;
+    }
+
+    public String getName() { return name; }
+    public String getBrand() { return brand; }
+    public String getPrice() { return price; }
+    public String getOldPrice() { return oldPrice; }
+    public String getBadge() { return badge; }
+    public String getBottleName() { return bottleName; }
+    public String getEmoji() { return emoji; }
+    public int getBgType() { return bgType; }
+    public String getCategory() { return category; }
+
+    public String getDescription() { return description; }
+    public ArrayList<String> getIngredients() { return ingredients; }
+}

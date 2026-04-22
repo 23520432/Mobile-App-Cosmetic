@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="nav_height">72dp</dimen>
+    <dimen name="card_radius">20dp</dimen>
+    <dimen name="btn_radius">50dp</dimen>
+    <dimen name="section_padding_h">20dp</dimen>
+    <dimen name="section_padding_v">24dp</dimen>
+    <dimen name="product_card_width">160dp</dimen>
+    <dimen name="product_img_height">160dp</dimen>
+    <dimen name="hero_height">340dp</dimen>
+    <dimen name="text_hero">32sp</dimen>
+    <dimen name="text_section_title">20sp</dimen>
+    <dimen name="text_product_name">13sp</dimen>
+    <dimen name="text_brand">10sp</dimen>
+    <dimen name="text_price">16sp</dimen>
+    <dimen name="text_body">14sp</dimen>
+    <dimen name="text_small">11sp</dimen>
+    <dimen name="text_xs">10sp</dimen>
+</resources>
