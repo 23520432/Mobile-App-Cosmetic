@@ -1,48 +1,73 @@
 package com.example.marketingcosmetics.models;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 
 public class Product implements Serializable {
+
+    // ====== DATA từ DATABASE ======
+    private int id;
     private String name;
     private String brand;
-    private String price;
-    private String oldPrice;
-    private String badge;
-    private String bottleName;
-    private String emoji;
-    private int bgType; // 1=pink, 2=lilac, 3=green, 4=gold
-    private String category;
-
+    private double price;
+    private String imageUrl;
     private String description;
-    private ArrayList<String> ingredients;
+    private String ingredients;
+    private int categoryId;
+    private String buyLink;
+    private String createdAt;
 
-    public Product(String name, String brand, String price, String oldPrice,
-                   String badge, String bottleName, String emoji, int bgType, String category,
-                   String description, ArrayList<String> ingredients) {
+    // ====== UI (OPTIONAL) ======
+    private String badge;   // HOT, SALE, NEW
+    private int bgType;     // 1=pink, 2=lilac, 3=green, 4=gold
+
+    // ====== CONSTRUCTOR ======
+    public Product(int id, String name, String brand, double price,
+                   String imageUrl, String description, String ingredients,
+                   int categoryId, String buyLink, String createdAt) {
+        this.id = id;
         this.name = name;
         this.brand = brand;
         this.price = price;
-        this.oldPrice = oldPrice;
-        this.badge = badge;
-        this.bottleName = bottleName;
-        this.emoji = emoji;
-        this.bgType = bgType;
-        this.category = category;
+        this.imageUrl = imageUrl;
         this.description = description;
         this.ingredients = ingredients;
+        this.categoryId = categoryId;
+        this.buyLink = buyLink;
+        this.createdAt = createdAt;
+
+        // default UI
+        this.badge = "";
+        this.bgType = 1;
     }
 
+    // ====== GETTER ======
+    public int getId() { return id; }
     public String getName() { return name; }
     public String getBrand() { return brand; }
-    public String getPrice() { return price; }
-    public String getOldPrice() { return oldPrice; }
-    public String getBadge() { return badge; }
-    public String getBottleName() { return bottleName; }
-    public String getEmoji() { return emoji; }
-    public int getBgType() { return bgType; }
-    public String getCategory() { return category; }
-
+    public double getPrice() { return price; }
+    public String getImageUrl() { return imageUrl; }
     public String getDescription() { return description; }
-    public ArrayList<String> getIngredients() { return ingredients; }
+    public String getIngredients() { return ingredients; }
+    public int getCategoryId() { return categoryId; }
+    public String getBuyLink() { return buyLink; }
+    public String getCreatedAt() { return createdAt; }
+
+    // ====== UI GETTER ======
+    public String getBadge() { return badge; }
+    public int getBgType() { return bgType; }
+
+    // ====== UI SETTER ======
+    public void setBadge(String badge) { this.badge = badge; }
+    public void setBgType(int bgType) { this.bgType = bgType; }
+
+    // ====== XỬ LÝ INGREDIENTS ======
+    public String[] getIngredientList() {
+        if (ingredients == null || ingredients.isEmpty()) return new String[0];
+
+        String[] arr = ingredients.split(",");
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = arr[i].trim(); // bỏ khoảng trắng
+        }
+        return arr;
+    }
 }

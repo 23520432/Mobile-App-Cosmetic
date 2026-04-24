@@ -362,11 +362,11 @@
             android:scrollbars="none"
             android:paddingStart="20dp"
             android:paddingEnd="20dp">
-            <LinearLayout
-                android:id="@+id/llProductsRow"
-                android:layout_width="wrap_content"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewProducts"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal" />
+                android:orientation="horizontal"/>
         </HorizontalScrollView>
 
         <!-- Membership Section -->

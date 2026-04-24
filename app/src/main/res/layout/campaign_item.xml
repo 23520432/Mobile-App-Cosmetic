@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:padding="12dp"
+    android:layout_marginBottom="12dp">
+
+    <!-- USER -->
+    <TextView
+        android:id="@+id/tvUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="User"
+        android:textStyle="bold"
+        android:textSize="14sp"
+        android:textColor="@color/dark"/>
+
+    <!-- CAPTION -->
+    <TextView
+        android:id="@+id/tvCaption"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Caption"
+        android:textSize="13sp"
+        android:textColor="@color/mid"
+        android:layout_marginTop="4dp"/>
+
+    <!-- IMAGE -->
+    <ImageView
+        android:id="@+id/imgCampaign"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:scaleType="centerCrop"
+        android:layout_marginTop="8dp"/>
+
+    <!-- STATS -->
+    <TextView
+        android:id="@+id/tvStats"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0 Like • 0 Comment • 0 Share"
+        android:textSize="12sp"
+        android:textColor="@color/mid"
+        android:layout_marginTop="6dp"/>
+
+    <!-- ACTIONS -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp">
+
+        <Button
+            android:id="@+id/btnLike"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="Like"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:id="@+id/btnComment"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="Comment"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:id="@+id/btnShare"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="Share"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+</LinearLayout>
