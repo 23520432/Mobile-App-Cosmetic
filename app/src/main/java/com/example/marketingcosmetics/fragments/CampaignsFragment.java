@@ -1,21 +1,26 @@
 package com.example.marketingcosmetics.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.*;
 import android.widget.*;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.*;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.marketingcosmetics.R;
+import com.example.marketingcosmetics.activities.AddCampaignActivity;
 import com.example.marketingcosmetics.adapters.CampaignAdapter;
 import com.example.marketingcosmetics.models.Campaign;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONObject;
 
@@ -38,6 +43,12 @@ public class CampaignsFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_campaigns, container, false);
 
+        FloatingActionButton fab = view.findViewById(R.id.fabAdd);
+
+        fab.setOnClickListener(v -> {
+            startActivity(new Intent(getContext(), AddCampaignActivity.class));
+        });
+
         initView(view);
         setupRecyclerView();
         setupTabs();
@@ -56,8 +67,54 @@ public class CampaignsFragment extends Fragment {
 
     private void setupRecyclerView() {
         rvCampaigns.setLayoutManager(new LinearLayoutManager(getContext()));
-        adapter = new CampaignAdapter(getContext(), campaignList);
+        adapter = new CampaignAdapter(
+                getContext(),
+                campaignList,
+                campaign -> {
+                    Intent intent = new Intent(getContext(), AddCampaignActivity.class);
+
+                    intent.putExtra("isEdit", true);
+                    intent.putExtra("id", campaign.getId());
+                    intent.putExtra("title", campaign.getTitle());
+                    intent.putExtra("desc", campaign.getDescription());
+                    intent.putExtra("image", campaign.getImageUrl());
+                    intent.putExtra("start", campaign.getStartDate());
+                    intent.putExtra("end", campaign.getEndDate());
+
+                    startActivity(intent);
+                },
+                campaign -> showDeleteDialog(campaign)
+        );
+
         rvCampaigns.setAdapter(adapter);
+    }
+
+    private void showDeleteDialog(Campaign campaign) {
+
+        new AlertDialog.Builder(getContext())
+                .setTitle("Xóa chiến dịch")
+                .setMessage("Bạn chắc chắn muốn xóa?")
+                .setPositiveButton("Xóa", (dialog, which) -> deleteCampaign(campaign.getId()))
+                .setNegativeButton("Hủy", null)
+                .show();
+    }
+
+    private void deleteCampaign(int id) {
+
+        String url = "http://10.0.2.2:3000/api/campaigns/" + id;
+
+        JsonObjectRequest request = new JsonObjectRequest(
+                Request.Method.DELETE,
+                url,
+                null,
+                response -> {
+                    Toast.makeText(getContext(), "Đã xóa", Toast.LENGTH_SHORT).show();
+                    loadCampaigns("ACTIVE"); // reload lại
+                },
+                error -> Toast.makeText(getContext(), "Xóa thất bại", Toast.LENGTH_SHORT).show()
+        );
+
+        Volley.newRequestQueue(getContext()).add(request);
     }
 
     private void setupTabs() {
@@ -107,11 +164,13 @@ public class CampaignsFragment extends Fragment {
 
                             Campaign c = new Campaign();
 
-                            c.setId(obj.getInt("ID")); // nếu backend dùng ID viết hoa
+                            c.setId(obj.getInt("ID"));
                             c.setTitle(obj.getString("TITLE"));
                             c.setDescription(obj.getString("DESCRIPTION"));
                             c.setImageUrl(obj.getString("IMAGE_URL"));
                             c.setStatus(obj.getString("STATUS"));
+                            c.setStartDate(obj.getString("START_DATE"));
+                            c.setEndDate(obj.getString("END_DATE"));
 
                             c.setCreatedByName(obj.getString("CREATOR"));
 
