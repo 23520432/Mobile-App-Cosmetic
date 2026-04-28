@@ -5,69 +5,77 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.marketingcosmetics.R;
-
+import com.example.marketingcosmetics.utils.SessionManager;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 public class EditProfileActivity extends AppCompatActivity {
 
     private EditText edtFullName, edtEmail, edtPhone;
-    private Button btnSaveProfile;
+    private Button btnSave;
+    private SessionManager session;
+    private int userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
 
-        // 2. Ánh xạ ID từ file XML (activity_edit_profile.xml)
+        // Lấy ID từ Session
+        session = new SessionManager(this);
+        userId = session.getUserId();
+
         edtFullName = findViewById(R.id.edtFullName);
         edtEmail = findViewById(R.id.edtEmail);
         edtPhone = findViewById(R.id.edtPhone);
-        btnSaveProfile = findViewById(R.id.btnSaveProfile);
+        btnSave = findViewById(R.id.btnSaveProfile);
 
-        // 3. Xử lý nút lưu
-        btnSaveProfile.setOnClickListener(v -> {
-            String newName = edtFullName.getText().toString();
-            String newEmail = edtEmail.getText().toString();
-            String newPhone = edtPhone.getText().toString();
+        // Tải dữ liệu cũ lên để người dùng sửa
+        loadCurrentData();
 
-            // Gọi API cập nhật ở đây (sẽ làm ở bước sau)
-            Toast.makeText(this, "Đã gửi yêu cầu cập nhật cho: " + newName, Toast.LENGTH_SHORT).show();
-            finish();
-        });
+        // 4. Sự kiện Lưu
+        btnSave.setOnClickListener(v -> performUpdate());
 
-        findViewById(R.id.btnBackInfo).setOnClickListener(v -> finish());
-
+        // Nút quay lại
+        findViewById(R.id.btnBackEdit).setOnClickListener(v -> finish());
     }
-    private void updateProfile(int userId, String name, String email, String phone) {
+
+    private void loadCurrentData() {
+        String url = "http://10.0.2.2:3000/api/users/" + userId;
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
+                response -> {
+                    try {
+                        edtFullName.setText(response.getString("FULLNAME"));
+                        edtEmail.setText(response.getString("EMAIL"));
+                        edtPhone.setText(response.getString("PHONE"));
+                    } catch (JSONException e) { e.printStackTrace(); }
+                }, null);
+        Volley.newRequestQueue(this).add(request);
+    }
+
+    private void performUpdate() {
         String url = "http://10.0.2.2:3000/api/users/update/" + userId;
 
-        RequestQueue queue = Volley.newRequestQueue(this);
-
-        // Tạo object dữ liệu để gửi đi
         JSONObject postData = new JSONObject();
         try {
-            postData.put("fullname", name);
-            postData.put("email", email);
-            postData.put("phone", phone);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+            postData.put("fullname", edtFullName.getText().toString());
+            postData.put("email", edtEmail.getText().toString());
+            postData.put("phone", edtPhone.getText().toString());
+        } catch (JSONException e) { e.printStackTrace(); }
 
         JsonObjectRequest putRequest = new JsonObjectRequest(Request.Method.PUT, url, postData,
                 response -> {
-                    Toast.makeText(this, "Cập nhật thành công!", Toast.LENGTH_SHORT).show();
-                    finish(); // Đóng màn hình sửa
+                    Toast.makeText(this, "Đã lưu thay đổi!", Toast.LENGTH_SHORT).show();
+                    finish(); // Đóng màn hình chỉnh sửa, quay về trang thông tin
                 },
-                error -> Toast.makeText(this, "Cập nhật thất bại", Toast.LENGTH_SHORT).show()
+                error -> Toast.makeText(this, "Không thể lưu dữ liệu", Toast.LENGTH_SHORT).show()
         );
 
-        queue.add(putRequest);
+        Volley.newRequestQueue(this).add(putRequest);
     }
 }
