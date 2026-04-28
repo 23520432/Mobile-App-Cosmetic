@@ -1,5 +1,6 @@
 package com.example.marketingcosmetics.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.*;
 import android.widget.*;
@@ -7,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import com.example.marketingcosmetics.R;
+import com.example.marketingcosmetics.activities.PersonalInfoActivity;
 
 public class ProfileFragment extends Fragment {
 
@@ -23,31 +25,34 @@ public class ProfileFragment extends Fragment {
 
     private void setupMenuItems(View view) {
         String[] menuItemIds = {
-                "menuPersonalInfo", "menuPoints", "menuOrders",
-                "menuPayment", "menuNotif", "menuSecurity",
-                "menuLanguage", "menuSupport"
+                "menuPersonalInfo", "menuPoints", "menuNotif", "menuSecurity",
+                "menuSupport"
         };
 
         String[] messages = {
                 "Thông tin cá nhân", "Điểm thưởng & ưu đãi",
-                "Lịch sử đơn hàng", "Phương thức thanh toán",
-                "Thông báo", "Bảo mật & Quyền riêng tư",
-                "Ngôn ngữ & Khu vực", "Hỗ trợ & Trợ giúp"
+                "Thông báo", "Bảo mật & Quyền riêng tư", "Hỗ trợ & Trợ giúp"
         };
 
         int[] ids = {
-                R.id.menuPersonalInfo, R.id.menuPoints, R.id.menuOrders,
-                R.id.menuPayment, R.id.menuNotif, R.id.menuSecurity,
-                R.id.menuLanguage, R.id.menuSupport
+                R.id.menuPersonalInfo, R.id.menuPoints, R.id.menuNotif, R.id.menuSecurity, R.id.menuSupport
         };
 
         for (int i = 0; i < ids.length; i++) {
             final String msg = messages[i];
             View item = view.findViewById(ids[i]);
             if (item != null) {
-                item.setOnClickListener(v ->
-                        Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show()
-                );
+                int finalI = i;
+                item.setOnClickListener(v -> {
+                    if (ids[finalI] == R.id.menuPersonalInfo) {
+                        // Nếu bấm vào "Thông tin cá nhân", mở Activity mới
+                        Intent intent = new Intent(getContext(), PersonalInfoActivity.class);
+                        startActivity(intent);
+                    } else {
+                        // Các menu khác tạm thời vẫn hiện Toast như cũ
+                        Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         }
     }

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/cream"
+    android:padding="20dp">
+
+    <ImageButton
+        android:id="@+id/btnBackInfo"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/bg_hero_badge"
+        android:src="@drawable/ic_arrow_right"
+        android:scaleX="-1"
+        android:padding="8dp"
+        android:contentDescription="Quay lại" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Chỉnh sửa hồ sơ"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="30dp" />
+
+    <EditText
+        android:id="@+id/edtFullName"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:hint="Họ và tên"
+        android:background="@drawable/bg_points_card"
+        android:padding="15dp"
+        android:layout_marginBottom="15dp" />
+
+    <EditText
+        android:id="@+id/edtEmail"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:background="@drawable/bg_points_card"
+        android:padding="15dp"
+        android:layout_marginBottom="15dp" />
+
+    <EditText
+        android:id="@+id/edtPhone"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:hint="Số điện thoại"
+        android:inputType="phone"
+        android:background="@drawable/bg_points_card"
+        android:padding="15dp"
+        android:layout_marginBottom="30dp" />
+
+    <Button
+        android:id="@+id/btnSaveProfile"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:text="LƯU THÔNG TIN"
+        android:backgroundTint="@color/dark"
+        android:textColor="@color/white"
+        android:textStyle="bold" />
+
+</LinearLayout>
