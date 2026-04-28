@@ -15,17 +15,25 @@ public class CampaignAdapter extends RecyclerView.Adapter<CampaignAdapter.ViewHo
 
     private Context context;
     private List<Campaign> list;
+    private OnEditClickListener editListener;
+    private OnDeleteClickListener deleteListener;
 
-    public CampaignAdapter(Context context, List<Campaign> list) {
+    public CampaignAdapter(Context context, List<Campaign> list,
+                           OnEditClickListener editListener,
+                           OnDeleteClickListener deleteListener) {
         this.context = context;
         this.list = list;
+        this.editListener = editListener;
+        this.deleteListener = deleteListener;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView tvUser, tvCaption, tvStats;
+        TextView tvUser, tvCaption, tvStats, tvDate;
         ImageView imgCampaign;
         Button btnLike, btnComment, btnShare;
+        ImageButton btnEdit;
+        ImageButton btnDelete;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -33,12 +41,16 @@ public class CampaignAdapter extends RecyclerView.Adapter<CampaignAdapter.ViewHo
             tvUser = itemView.findViewById(R.id.tvUser);
             tvCaption = itemView.findViewById(R.id.tvCaption);
             tvStats = itemView.findViewById(R.id.tvStats);
+            tvDate = itemView.findViewById(R.id.tvDate);
 
             imgCampaign = itemView.findViewById(R.id.imgCampaign);
 
-            btnLike = itemView.findViewById(R.id.btnLike);
-            btnComment = itemView.findViewById(R.id.btnComment);
-            btnShare = itemView.findViewById(R.id.btnShare);
+//            btnLike = itemView.findViewById(R.id.btnLike);
+//            btnComment = itemView.findViewById(R.id.btnComment);
+//            btnShare = itemView.findViewById(R.id.btnShare);
+
+            btnEdit = itemView.findViewById(R.id.btnEdit);
+            btnDelete = itemView.findViewById(R.id.btnDelete);
         }
     }
 
@@ -55,39 +67,71 @@ public class CampaignAdapter extends RecyclerView.Adapter<CampaignAdapter.ViewHo
 
         Campaign c = list.get(position);
 
-        // User (creator)
+        // USER
         h.tvUser.setText(c.getCreatedByName());
 
-        // Caption
+        // CAPTION
         h.tvCaption.setText(c.getDescription());
 
-        // Stats
+        // DATE
+        try {
+            String start = c.getStartDate().split("T")[0];
+            String end = c.getEndDate().split("T")[0];
+            h.tvDate.setText(start + " - " + end);
+        } catch (Exception e) {
+            h.tvDate.setText("N/A");
+        }
+
+        // STATS
         h.tvStats.setText(
                 c.getLikeCount() + " Like • " +
                         c.getCommentCount() + " Comment • " +
                         c.getShareCount() + " Share"
         );
 
-        // Image
+        // IMAGE
         Glide.with(context)
                 .load(c.getImageUrl())
                 .placeholder(R.drawable.placeholder)
                 .into(h.imgCampaign);
 
-        // Like
-        h.btnLike.setOnClickListener(v ->
+        // ACTIONS
+        LinearLayout btnLike = h.itemView.findViewById(R.id.layoutLike);
+        LinearLayout btnComment = h.itemView.findViewById(R.id.layoutComment);
+        LinearLayout btnShare = h.itemView.findViewById(R.id.layoutShare);
+
+        btnLike.setOnClickListener(v ->
                 Toast.makeText(context, "Liked ❤️", Toast.LENGTH_SHORT).show()
         );
 
-        // Comment
-        h.btnComment.setOnClickListener(v ->
+        btnComment.setOnClickListener(v ->
                 Toast.makeText(context, "Comment 💬", Toast.LENGTH_SHORT).show()
         );
 
-        // Share
-        h.btnShare.setOnClickListener(v ->
+        btnShare.setOnClickListener(v ->
                 Toast.makeText(context, "Shared 🔄", Toast.LENGTH_SHORT).show()
         );
+
+        // EDIT BUTTON
+        h.btnEdit.setOnClickListener(v -> {
+            if (editListener != null) {
+                editListener.onEdit(c);
+            }
+        });
+
+        h.btnDelete.setOnClickListener(v -> {
+            if (deleteListener != null) {
+                deleteListener.onDelete(c);
+            }
+        });
+    }
+
+    public interface OnEditClickListener {
+        void onEdit(Campaign campaign);
+    }
+
+    public interface OnDeleteClickListener {
+        void onDelete(Campaign campaign);
     }
 
     @Override

@@ -29,4 +29,10 @@
     <color name="divider_color">#30F2C9C9</color>
     <color name="overlay_dark">#40000000</color>
     <color name="white_alpha60">#99FFFCFF</color>
+    <color name="SeaShell">#FFF5E3</color>
+    <color name="peal_pink">#FDB4E4</color>
+    <color name="cream_white">#CA9859</color>
+    <color name="cream_pink">#DC4B87</color>
+    <color name="blush4">#BA8181</color>
+    <color name="black">#30000000</color>
 </resources>
