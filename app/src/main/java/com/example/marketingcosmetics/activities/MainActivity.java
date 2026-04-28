@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.marketingcosmetics.R;
 
 import com.example.marketingcosmetics.fragments.*;
+import com.example.marketingcosmetics.utils.SessionManager;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,6 +23,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // ✦ KIỂM TRA SESSION ✦
+        SessionManager session = new SessionManager(this);
+        if (!session.isLoggedIn()) {
+            startActivity(new android.content.Intent(this, LoginActivity.class));
+            finish();
+            return;
+        }
+
         setContentView(R.layout.activity_main);
 
         initViews();

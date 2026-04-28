@@ -43,103 +43,36 @@
                 android:textColor="@color/dark"
                 android:layout_marginBottom="8dp" />
 
-            <TextView
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_profile_tier"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
-                android:paddingTop="6dp"
-                android:paddingBottom="6dp"
-                android:text="✦ Gold Member"
-                android:textSize="12sp"
-                android:textStyle="bold"
-                android:textColor="@color/dark" />
-
-        </LinearLayout>
-
-        <!-- Stats Row -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:background="@color/white"
-            android:paddingTop="16dp"
-            android:paddingBottom="16dp">
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:gravity="center">
+                android:gravity="center"
+                android:background="@drawable/bg_points_card"
+                android:paddingStart="24dp"
+                android:paddingEnd="24dp"
+                android:paddingTop="12dp"
+                android:paddingBottom="12dp"
+                android:elevation="2dp"
+                android:layout_marginTop="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="✦ ĐIỂM TÍCH LŨY"
+                    android:textSize="10sp"
+                    android:textStyle="bold"
+                    android:letterSpacing="0.1"
+                    android:textColor="@color/mid" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="2,480"
-                    android:textSize="20sp"
+                    android:textSize="22sp"
                     android:textStyle="bold"
                     android:textColor="@color/dark" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Điểm"
-                    android:textSize="12sp"
-                    android:textColor="@color/mid" />
             </LinearLayout>
-
-            <View
-                android:layout_width="1dp"
-                android:layout_height="40dp"
-                android:background="@color/divider_color" />
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="24"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/dark" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Đơn hàng"
-                    android:textSize="12sp"
-                    android:textColor="@color/mid" />
-            </LinearLayout>
-
-            <View
-                android:layout_width="1dp"
-                android:layout_height="40dp"
-                android:background="@color/divider_color" />
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="8"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/dark" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Yêu thích"
-                    android:textSize="12sp"
-                    android:textColor="@color/mid" />
-            </LinearLayout>
-
         </LinearLayout>
 
         <!-- Menu: Tài khoản -->
@@ -223,62 +156,6 @@
 
             <View android:layout_width="match_parent" android:layout_height="1dp"
                 android:background="@color/divider_color" android:layout_marginStart="54dp" />
-
-            <!-- Lịch sử đơn hàng -->
-            <LinearLayout
-                android:id="@+id/menuOrders"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:clickable="true"
-                android:focusable="true">
-                <TextView android:layout_width="40dp" android:layout_height="40dp"
-                    android:background="@drawable/bg_menu_icon_gold"
-                    android:gravity="center" android:text="🛍️" android:textSize="18sp"
-                    android:layout_marginEnd="14dp" />
-                <LinearLayout android:layout_width="0dp" android:layout_weight="1"
-                    android:layout_height="wrap_content" android:orientation="vertical">
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                        android:text="Lịch sử đơn hàng" android:textSize="14sp"
-                        android:textColor="@color/dark" android:textStyle="bold" />
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                        android:text="24 đơn hàng" android:textSize="12sp"
-                        android:textColor="@color/mid" />
-                </LinearLayout>
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                    android:text="›" android:textSize="22sp" android:textColor="@color/light_purple" />
-            </LinearLayout>
-
-            <View android:layout_width="match_parent" android:layout_height="1dp"
-                android:background="@color/divider_color" android:layout_marginStart="54dp" />
-
-            <!-- Thanh toán -->
-            <LinearLayout
-                android:id="@+id/menuPayment"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:clickable="true"
-                android:focusable="true">
-                <TextView android:layout_width="40dp" android:layout_height="40dp"
-                    android:background="@drawable/bg_menu_icon_pink"
-                    android:gravity="center" android:text="💳" android:textSize="18sp"
-                    android:layout_marginEnd="14dp" />
-                <LinearLayout android:layout_width="0dp" android:layout_weight="1"
-                    android:layout_height="wrap_content" android:orientation="vertical">
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                        android:text="Phương thức thanh toán" android:textSize="14sp"
-                        android:textColor="@color/dark" android:textStyle="bold" />
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                        android:text="Visa ••••4821" android:textSize="12sp"
-                        android:textColor="@color/mid" />
-                </LinearLayout>
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                    android:text="›" android:textSize="22sp" android:textColor="@color/light_purple" />
-            </LinearLayout>
-
         </LinearLayout>
 
         <!-- Menu: Cài đặt -->
@@ -362,35 +239,6 @@
             <View android:layout_width="match_parent" android:layout_height="1dp"
                 android:background="@color/divider_color" android:layout_marginStart="54dp" />
 
-            <!-- Ngôn ngữ -->
-            <LinearLayout
-                android:id="@+id/menuLanguage"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:clickable="true"
-                android:focusable="true">
-                <TextView android:layout_width="40dp" android:layout_height="40dp"
-                    android:background="@drawable/bg_menu_icon_gold"
-                    android:gravity="center" android:text="🌐" android:textSize="18sp"
-                    android:layout_marginEnd="14dp" />
-                <LinearLayout android:layout_width="0dp" android:layout_weight="1"
-                    android:layout_height="wrap_content" android:orientation="vertical">
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                        android:text="Ngôn ngữ &amp; Khu vực" android:textSize="14sp"
-                        android:textColor="@color/dark" android:textStyle="bold" />
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                        android:text="Tiếng Việt" android:textSize="12sp"
-                        android:textColor="@color/mid" />
-                </LinearLayout>
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                    android:text="›" android:textSize="22sp" android:textColor="@color/light_purple" />
-            </LinearLayout>
-
-            <View android:layout_width="match_parent" android:layout_height="1dp"
-                android:background="@color/divider_color" android:layout_marginStart="54dp" />
-
             <!-- Hỗ trợ -->
             <LinearLayout
                 android:id="@+id/menuSupport"
@@ -410,11 +258,35 @@
                         android:text="Hỗ trợ &amp; Trợ giúp" android:textSize="14sp"
                         android:textColor="@color/dark" android:textStyle="bold" />
                     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                        android:text="Chat với CSKH" android:textSize="12sp"
+                        android:text="Liên hệ với CSKH" android:textSize="12sp"
                         android:textColor="@color/mid" />
                 </LinearLayout>
                 <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                     android:text="›" android:textSize="22sp" android:textColor="@color/light_purple" />
+            </LinearLayout>
+
+            <View android:layout_width="match_parent" android:layout_height="1dp"
+                android:background="@color/divider_color" android:layout_marginStart="54dp" />
+
+            <LinearLayout
+                android:id="@+id/menuLogout"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:clickable="true"
+                android:focusable="true">
+
+                <TextView android:layout_width="40dp" android:layout_height="40dp"
+                    android:background="@drawable/bg_menu_icon_pink"
+                    android:gravity="center" android:text="🚪" android:textSize="18sp"
+                    android:layout_marginEnd="14dp" />
+
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Đăng xuất"
+                    android:textSize="14sp"
+                    android:textColor="#FF5252"
+                    android:textStyle="bold" />
             </LinearLayout>
 
         </LinearLayout>

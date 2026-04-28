@@ -45,5 +45,10 @@
             android:screenOrientation="portrait"
             android:parentActivityName=".activities.MainActivity" />
 
+        <activity android:name=".activities.PersonalInfoActivity" />
+        <activity android:name=".activities.EditProfileActivity" />
+        <activity android:name=".activities.LoginActivity" />
+
+
     </application>
 </manifest>
