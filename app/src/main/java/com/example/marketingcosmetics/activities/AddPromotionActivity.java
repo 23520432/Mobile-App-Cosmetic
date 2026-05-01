@@ -33,7 +33,7 @@ public class AddPromotionActivity extends AppCompatActivity {
         edtCampaignId = findViewById(R.id.edtCampaignId);
         btnSave = findViewById(R.id.btnSave);
 
-        // 👉 nhận dữ liệu edit
+        // nhận dữ liệu edit
         isEdit = getIntent().getBooleanExtra("isEdit", false);
         promotionId = getIntent().getIntExtra("id", -1);
 
