@@ -32,4 +32,6 @@
     <string name="notifications_title">Thông báo</string>
     <string name="add_to_cart">+</string>
     <string name="back">Quay lại</string>
+    <string name="answer_support_1">Bạn sẽ được tích điểm tự động sau mỗi đơn hàng hoàn tất hoặc tương tác với bài đăng chiến dịch. Với mỗi 1,000đ chi tiêu, bạn sẽ nhận được 1 điểm tích lũy vào tài khoản Luxe. Cộng 100 điểm đối với like, 200 điểm đối với comment và share.</string>
+    <string name="answer_support_2">Chúng tôi cam kết bảo mật tuyệt đối thông tin cá nhân của bạn và không chia sẻ cho bên thứ ba khi chưa được sự đồng ý.</string>
 </resources>

@@ -122,7 +122,7 @@ public class ProductDetailActivity extends AppCompatActivity {
 
         findViewById(R.id.btnDetailAddToCart).setOnClickListener(v ->
                 Toast.makeText(this,
-                        "Link mua sản phẩm " + name,
+                        "Đã chuyển sang link mua " + name + "!",
                         Toast.LENGTH_SHORT).show()
         );
     }

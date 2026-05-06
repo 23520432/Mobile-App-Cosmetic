@@ -48,7 +48,13 @@
         <activity android:name=".activities.PersonalInfoActivity" />
         <activity android:name=".activities.EditProfileActivity" />
         <activity android:name=".activities.LoginActivity" />
-
-
+        <activity
+            android:name=".activities.LoyaltyActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.ChangePasswordActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".activities.SupportHelpActivity" />
     </application>
 </manifest>

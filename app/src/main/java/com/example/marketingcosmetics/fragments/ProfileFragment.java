@@ -8,8 +8,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import com.example.marketingcosmetics.R;
+import com.example.marketingcosmetics.activities.ChangePasswordActivity;
 import com.example.marketingcosmetics.activities.LoginActivity;
+import com.example.marketingcosmetics.activities.LoyaltyActivity;
 import com.example.marketingcosmetics.activities.PersonalInfoActivity;
+import com.example.marketingcosmetics.activities.SupportHelpActivity;
 
 public class ProfileFragment extends Fragment {
 
@@ -26,18 +29,18 @@ public class ProfileFragment extends Fragment {
 
     private void setupMenuItems(View view) {
         String[] menuItemIds = {
-                "menuPersonalInfo", "menuPoints", "menuNotif", "menuSecurity",
+                "menuPersonalInfo", "menuPoints", "menuSecurity",
                 "menuSupport", "menuLogout"
         };
 
         String[] messages = {
-                "Thông tin cá nhân", "Điểm thưởng & ưu đãi", "Thông báo",
-                "Bảo mật & Quyền riêng tư", "Hỗ trợ & Trợ giúp", "Đăng xuất"
+                "Thông tin cá nhân", "Điểm thưởng & ưu đãi", "Bảo mật",
+                "Hỗ trợ & Trợ giúp", "Đăng xuất"
         };
 
         int[] ids = {
-                R.id.menuPersonalInfo, R.id.menuPoints, R.id.menuNotif,
-                R.id.menuSecurity, R.id.menuSupport, R.id.menuLogout
+                R.id.menuPersonalInfo, R.id.menuPoints, R.id.menuSecurity,
+                R.id.menuSupport, R.id.menuLogout
         };
 
         for (int i = 0; i < ids.length; i++) {
@@ -49,12 +52,23 @@ public class ProfileFragment extends Fragment {
                     if (ids[finalI] == R.id.menuPersonalInfo) {
                         Intent intent = new Intent(getContext(), PersonalInfoActivity.class);
                         startActivity(intent);
-                    }
-                    else if (ids[finalI] == R.id.menuLogout) {
+                    } else if (ids[finalI] == R.id.menuLogout) {
                         // Thực hiện đăng xuất
                         performLogout();
-                    }else {
-                        // Các menu khác tạm thời vẫn hiện Toast như cũ
+                    } else if (ids[finalI] == R.id.menuPoints) {
+                        // vào điểm thưởng và ưu đãi
+                        Intent intent = new Intent(getContext(), LoyaltyActivity.class);
+                        startActivity(intent);
+                    } else if (ids[finalI] == R.id.menuSecurity) {
+                        // vào bảo mật
+                        Intent intent = new Intent(getContext(), ChangePasswordActivity.class);
+                        startActivity(intent);
+                    } else if (ids[finalI] == R.id.menuSupport) {
+                        // vào hỗ trợ và trợ giúp
+                        Intent intent = new Intent(getContext(), SupportHelpActivity.class);
+                        startActivity(intent);
+                    } else {
+                        // Các menu khác
                         Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
                     }
                 });
