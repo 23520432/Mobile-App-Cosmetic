@@ -32,6 +32,7 @@ public class CampaignsFragment extends Fragment {
     RecyclerView rvCampaigns;
     CampaignAdapter adapter;
     List<Campaign> campaignList = new ArrayList<>();
+    String currentStatus = "ACTIVE";
 
     Button btnRunning, btnUpcoming, btnEnded;
 
@@ -46,13 +47,16 @@ public class CampaignsFragment extends Fragment {
         FloatingActionButton fab = view.findViewById(R.id.fabAdd);
 
         fab.setOnClickListener(v -> {
-            startActivity(new Intent(getContext(), AddCampaignActivity.class));
+//            startActivity(new Intent(getContext(), AddCampaignActivity.class));
+            Intent intent = new Intent(getContext(), AddCampaignActivity.class);
+            intent.putExtra("status", currentStatus);
+            startActivity(intent);
         });
 
         initView(view);
         setupRecyclerView();
         setupTabs();
-        loadCampaigns("ACTIVE");
+        loadCampaigns(currentStatus);
 
         return view;
     }
@@ -109,7 +113,7 @@ public class CampaignsFragment extends Fragment {
                 null,
                 response -> {
                     Toast.makeText(getContext(), "Đã xóa", Toast.LENGTH_SHORT).show();
-                    loadCampaigns("ACTIVE"); // reload lại
+                    loadCampaigns(currentStatus);
                 },
                 error -> Toast.makeText(getContext(), "Xóa thất bại", Toast.LENGTH_SHORT).show()
         );
@@ -121,17 +125,20 @@ public class CampaignsFragment extends Fragment {
 
         btnRunning.setOnClickListener(v -> {
             setActiveTab(btnRunning, btnUpcoming, btnEnded);
-            loadCampaigns("ACTIVE");
+            currentStatus = "ACTIVE";
+            loadCampaigns(currentStatus);
         });
 
         btnUpcoming.setOnClickListener(v -> {
             setActiveTab(btnUpcoming, btnRunning, btnEnded);
-            loadCampaigns("UPCOMING");
+            currentStatus = "UPCOMING";
+            loadCampaigns(currentStatus);
         });
 
         btnEnded.setOnClickListener(v -> {
             setActiveTab(btnEnded, btnRunning, btnUpcoming);
-            loadCampaigns("ENDED");
+            currentStatus = "ENDED";
+            loadCampaigns(currentStatus);
         });
     }
 
@@ -196,5 +203,11 @@ public class CampaignsFragment extends Fragment {
                 });
 
         Volley.newRequestQueue(getContext()).add(request);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        loadCampaigns(currentStatus);
     }
 }

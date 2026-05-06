@@ -103,7 +103,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             if (listener != null) {
                 listener.onAddToCart(product, position);
             } else {
-                Toast.makeText(context, "Đã thêm " + product.getName(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Link mua " + product.getName(), Toast.LENGTH_SHORT).show();
             }
         });
     }

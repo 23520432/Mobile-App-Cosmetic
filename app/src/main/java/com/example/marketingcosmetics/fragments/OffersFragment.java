@@ -244,6 +244,11 @@ public class OffersFragment extends Fragment {
         }
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        loadPromotions();
+    }
 
     @Override
     public void onDestroyView() {

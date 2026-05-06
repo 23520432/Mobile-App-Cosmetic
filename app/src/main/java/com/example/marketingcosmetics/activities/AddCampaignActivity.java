@@ -14,6 +14,7 @@ import org.json.JSONObject;
 public class AddCampaignActivity extends AppCompatActivity {
     EditText edtTitle, edtDesc, edtImage, edtStart, edtEnd;
     Button btnSave;
+    String status;
 
     boolean isEdit = false;
     int campaignId = -1;
@@ -33,6 +34,11 @@ public class AddCampaignActivity extends AppCompatActivity {
         // 👉 nhận dữ liệu edit
         isEdit = getIntent().getBooleanExtra("isEdit", false);
         campaignId = getIntent().getIntExtra("id", -1);
+        status = getIntent().getStringExtra("status");
+
+        if (status == null) {
+            status = "ACTIVE";
+        }
 
         if (isEdit) {
             edtTitle.setText(getIntent().getStringExtra("title"));
@@ -81,6 +87,7 @@ public class AddCampaignActivity extends AppCompatActivity {
             json.put("image_url", image);
             json.put("start_date", start);
             json.put("end_date", end);
+            json.put("status", status);
 
             JsonObjectRequest request = new JsonObjectRequest(
                     method,

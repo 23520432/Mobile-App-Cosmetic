@@ -67,7 +67,7 @@ public class ProductsFragment extends Fragment {
 
             @Override
             public void onAddToCart(Product product, int position) {
-                Toast.makeText(getContext(), "Đã thêm: " + product.getName(),
+                Toast.makeText(getContext(), "Link mua: " + product.getName(),
                         Toast.LENGTH_SHORT).show();
             }
         });
