@@ -63,20 +63,10 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         // ===== IMAGE -> BACKGROUND =====
         Glide.with(context)
                 .load(product.getImageUrl())
-                .centerCrop()
                 .placeholder(R.drawable.bg_product_img_pink)
-                .into(new CustomTarget<Drawable>() {
-                    @Override
-                    public void onResourceReady(@NonNull Drawable resource,
-                                                @Nullable Transition<? super Drawable> transition) {
-                        holder.prodImgBg.setBackground(resource);
-                    }
-
-                    @Override
-                    public void onLoadCleared(@Nullable Drawable placeholder) {
-                        holder.prodImgBg.setBackgroundResource(R.drawable.bg_product_img_pink);
-                    }
-                });
+                .error(R.drawable.bg_product_img_pink)
+                .centerCrop()
+                .into(holder.imgProduct);
 
         // ===== BADGE =====
         if (product.getBadge() != null && !product.getBadge().isEmpty()) {
@@ -116,14 +106,14 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     // ===== VIEW HOLDER =====
     static class ProductViewHolder extends RecyclerView.ViewHolder {
 
-        FrameLayout prodImgBg;
+        ImageView imgProduct;
         TextView tvProductName, tvBrandName, tvPrice, tvOldPrice, tvBadge;
         Button btnAdd;
 
         public ProductViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            prodImgBg = itemView.findViewById(R.id.prodImgBg);
+            imgProduct = itemView.findViewById(R.id.imgProduct);
             tvProductName = itemView.findViewById(R.id.tvProductName);
             tvBrandName = itemView.findViewById(R.id.tvBrandName);
             tvPrice = itemView.findViewById(R.id.tvPrice);
