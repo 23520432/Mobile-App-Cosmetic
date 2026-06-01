@@ -130,6 +130,7 @@ public class OffersFragment extends Fragment {
         item.setOnClickListener(v -> {
             Intent intent = new Intent(getContext(), PromotionDetailActivity.class);
 
+            intent.putExtra("campaignId", p.getCampaignId());
             intent.putExtra("title", p.getTitle());
             intent.putExtra("desc", p.getDescription());
             intent.putExtra("image", p.getImageUrl());

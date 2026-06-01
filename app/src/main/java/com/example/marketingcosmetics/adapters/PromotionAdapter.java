@@ -94,6 +94,7 @@ public class PromotionAdapter extends RecyclerView.Adapter<PromotionAdapter.View
         h.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(context, PromotionDetailActivity.class);
 
+            intent.putExtra("campaignId", p.getCampaignId());
             intent.putExtra("title", p.getTitle());
             intent.putExtra("desc", p.getDescription());
             intent.putExtra("discount", p.getDiscountPercent());
