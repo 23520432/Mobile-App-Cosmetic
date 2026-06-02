@@ -10,16 +10,13 @@ public class Promotion {
     private String startDate;
     private String endDate;
     private String imageUrl;
-
-    // thêm từ API nâng cấp
     private String campaignTitle;
     private String status; // ACTIVE / ENDED
 
-    // Constructor rỗng (bắt buộc)
     public Promotion() {
     }
 
-    // Constructor đầy đủ
+    // Constructor
     public Promotion(int id, int campaignId, String title, String description,
                      int discountPercent, String startDate, String endDate,
                      String imageUrl, String campaignTitle, String status) {

@@ -8,7 +8,16 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 import com.example.marketingcosmetics.R;
+import com.example.marketingcosmetics.utils.SessionManager;
 import com.google.android.flexbox.FlexboxLayout;
+
+// Import thêm thư viện Volley và JSON
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -21,6 +30,9 @@ public class ProductDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_product_detail);
 
         // ===== GET DATA =====
+        // Lấy ID sản phẩm (Mặc định là -1 nếu không tìm thấy)
+        int productId   = getIntent().getIntExtra("id", -1);
+
         String name     = getIntent().getStringExtra("name");
         String brand    = getIntent().getStringExtra("brand");
         double price    = getIntent().getDoubleExtra("price", 0);
@@ -120,10 +132,56 @@ public class ProductDetailActivity extends AppCompatActivity {
         // ===== BUTTONS =====
         findViewById(R.id.btnDetailBack).setOnClickListener(v -> finish());
 
-        findViewById(R.id.btnDetailAddToCart).setOnClickListener(v ->
-                Toast.makeText(this,
-                        "Đã chuyển sang link mua " + name + "!",
-                        Toast.LENGTH_SHORT).show()
+        findViewById(R.id.btnDetailAddToCart).setOnClickListener(v -> {
+            // 1. Vẫn hiện Toast cho người dùng thấy giao diện phản hồi
+            Toast.makeText(this, "Đã chuyển sang link mua " + name + "!", Toast.LENGTH_SHORT).show();
+
+            // 2. Gọi API ngầm để ghi nhận +1 vào Database nếu có ID hợp lệ
+            if (productId != -1) {
+                sendProductConversionToBackend(productId);
+            } else {
+                System.out.println("Lỗi: Không tìm thấy ID sản phẩm để gửi API.");
+            }
+        });
+    }
+
+    // HÀM GỌI API GHI NHẬN CHUYỂN ĐỔI (ORGANIC)
+    private void sendProductConversionToBackend(int productId) {
+        // 1. Khởi tạo SessionManager
+        SessionManager session = new SessionManager(this);
+        int currentUserId = session.getUserId();
+
+        // 2. Kiểm tra xem user đã đăng nhập chưa
+        if (currentUserId == -1) {
+            Toast.makeText(this, "Vui lòng đăng nhập để ghi nhận lượt mua!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        String url = "http://10.0.2.2:3000/api/conversions";
+        RequestQueue queue = Volley.newRequestQueue(this);
+
+        JSONObject jsonBody = new JSONObject();
+        try {
+            // 3. Dùng ID lấy từ SessionManager
+            jsonBody.put("user_id", currentUserId);
+            jsonBody.put("product_id", productId);
+            jsonBody.put("campaign_id", JSONObject.NULL);
+            jsonBody.put("conversion_type", "APP");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        JsonObjectRequest request = new JsonObjectRequest(
+                Request.Method.POST,
+                url,
+                jsonBody,
+                response -> {
+                    System.out.println("✅ Ghi nhận chuyển đổi thành công cho User ID: " + currentUserId);
+                },
+                error -> {
+                    System.out.println("❌ Lỗi API: " + error.getMessage());
+                }
         );
+        queue.add(request);
     }
 }
