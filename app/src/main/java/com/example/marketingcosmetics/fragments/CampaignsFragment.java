@@ -36,6 +36,8 @@ public class CampaignsFragment extends Fragment {
 
     Button btnRunning, btnUpcoming, btnEnded;
 
+    TextView tvActiveCampaigns, tvTotalPromotions, tvTotalInteractions, tvTotalConversions;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -58,6 +60,8 @@ public class CampaignsFragment extends Fragment {
         setupTabs();
         loadCampaigns(currentStatus);
 
+        loadDashboardStats(currentStatus);
+
         return view;
     }
 
@@ -67,6 +71,11 @@ public class CampaignsFragment extends Fragment {
         btnRunning = view.findViewById(R.id.btnCampRunning);
         btnUpcoming = view.findViewById(R.id.btnCampUpcoming);
         btnEnded = view.findViewById(R.id.btnCampEnded);
+
+        tvActiveCampaigns = view.findViewById(R.id.tvActiveCampaigns);
+        tvTotalPromotions = view.findViewById(R.id.tvTotalPromotions);
+        tvTotalInteractions = view.findViewById(R.id.tvTotalInteractions);
+        tvTotalConversions = view.findViewById(R.id.tvTotalConversions);
     }
 
     private void setupRecyclerView() {
@@ -114,6 +123,7 @@ public class CampaignsFragment extends Fragment {
                 response -> {
                     Toast.makeText(getContext(), "Đã xóa", Toast.LENGTH_SHORT).show();
                     loadCampaigns(currentStatus);
+                    loadDashboardStats(currentStatus);
                 },
                 error -> Toast.makeText(getContext(), "Xóa thất bại", Toast.LENGTH_SHORT).show()
         );
@@ -127,18 +137,21 @@ public class CampaignsFragment extends Fragment {
             setActiveTab(btnRunning, btnUpcoming, btnEnded);
             currentStatus = "ACTIVE";
             loadCampaigns(currentStatus);
+            loadDashboardStats(currentStatus);
         });
 
         btnUpcoming.setOnClickListener(v -> {
             setActiveTab(btnUpcoming, btnRunning, btnEnded);
             currentStatus = "UPCOMING";
             loadCampaigns(currentStatus);
+            loadDashboardStats(currentStatus);
         });
 
         btnEnded.setOnClickListener(v -> {
             setActiveTab(btnEnded, btnRunning, btnUpcoming);
             currentStatus = "ENDED";
             loadCampaigns(currentStatus);
+            loadDashboardStats(currentStatus);
         });
     }
 
@@ -205,9 +218,42 @@ public class CampaignsFragment extends Fragment {
         Volley.newRequestQueue(getContext()).add(request);
     }
 
+    // 👉 Thêm tham số status vào hàm
+    private void loadDashboardStats(String status) {
+        // Nối thêm status vào URL
+        String url = "http://10.0.2.2:3000/api/campaigns/dashboard/stats?status=" + status;
+
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
+                response -> {
+                    try {
+                        int totalCampaigns = response.getInt("total_campaigns");
+                        int totalPromotions = response.getInt("total_promotions");
+                        int totalInteractions = response.getInt("total_interactions");
+                        int totalConversions = response.getInt("total_conversions");
+
+                        tvActiveCampaigns.setText(String.valueOf(totalCampaigns));
+                        tvTotalPromotions.setText(String.valueOf(totalPromotions));
+                        tvTotalConversions.setText(String.valueOf(totalConversions));
+
+                        if (totalInteractions >= 1000) {
+                            tvTotalInteractions.setText(String.format("%.1fK", totalInteractions / 1000.0));
+                        } else {
+                            tvTotalInteractions.setText(String.valueOf(totalInteractions));
+                        }
+                    } catch (Exception e) {
+                        Log.e("DASHBOARD_ERROR", e.toString());
+                    }
+                },
+                error -> Log.e("API_ERROR", "Lỗi tải thống kê: " + error.toString())
+        );
+
+        Volley.newRequestQueue(getContext()).add(request);
+    }
+
     @Override
     public void onResume() {
         super.onResume();
         loadCampaigns(currentStatus);
+        loadDashboardStats(currentStatus);
     }
 }

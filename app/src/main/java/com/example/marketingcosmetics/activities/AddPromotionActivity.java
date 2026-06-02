@@ -92,6 +92,7 @@ public class AddPromotionActivity extends AppCompatActivity {
             json.put("start_date", start);
             json.put("end_date", end);
             json.put("discount_percent", discount);
+            json.put("campaign_id", campaignId);
 
             JsonObjectRequest request = new JsonObjectRequest(
                     method,

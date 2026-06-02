@@ -60,7 +60,7 @@ public class HomeFragment extends Fragment {
     private final String API_STATS_URL = "http://10.0.2.2:3000/api/conversions/stats";
     private final String API_TOP_PRODUCTS_URL = "http://10.0.2.2:3000/api/conversions/top-products";
 
-    private final String API_URL = "http://10.0.2.2:3000/api/products"; // 👈 API Node.js
+    private final String API_URL = "http://10.0.2.2:3000/api/products/top-converting";
 
     @Nullable
     @Override
@@ -73,7 +73,6 @@ public class HomeFragment extends Fragment {
         initViews(view);
         setupRecyclerView();
 
-        // Gọi 2 API cùng lúc khi mở trang chủ
         loadProductsFromAPI();
         loadConversionStats();
         loadCampaignListForSpinner();
@@ -207,7 +206,6 @@ public class HomeFragment extends Fragment {
     private void drawPieChart(int appData, int campaignData) {
         ArrayList<PieEntry> entries = new ArrayList<>();
 
-        // Chỉ thêm vào biểu đồ nếu có dữ liệu để tránh lỗi hiển thị
         if (appData > 0) entries.add(new PieEntry(appData, "Organic (App)"));
         if (campaignData > 0) entries.add(new PieEntry(campaignData, "Qua Chiến dịch"));
 
@@ -220,17 +218,27 @@ public class HomeFragment extends Fragment {
 
         PieDataSet dataSet = new PieDataSet(entries, "");
 
-        // Set màu sắc cho biểu đồ (Bạn có thể đổi mã màu tùy thích)
+        // Set màu sắc cho biểu đồ
         ArrayList<Integer> colors = new ArrayList<>();
-        colors.add(Color.parseColor("#9C27B0")); // Tím
-        colors.add(Color.parseColor("#FF9800")); // Cam
+        colors.add(Color.parseColor("#B39DDB")); // Tím Lilac (Organic)
+        colors.add(Color.parseColor("#F48FB1")); // Hồng Phấn (Qua Chiến dịch)
         dataSet.setColors(colors);
 
         dataSet.setValueTextSize(14f);
         dataSet.setValueTextColor(Color.WHITE);
 
+        // Ép kiểu bỏ số .0 ở đuôi (Ví dụ: 10.0 -> 10)
+        dataSet.setValueFormatter(new com.github.mikephil.charting.formatter.ValueFormatter() {
+            @Override
+            public String getFormattedValue(float value) {
+                return String.valueOf((int) value);
+            }
+        });
+
         PieData data = new PieData(dataSet);
         pieChartConversions.setData(data);
+        // tắt chữ chỉ giữ số
+        pieChartConversions.setDrawEntryLabels(false);
 
         // Làm đẹp biểu đồ
         pieChartConversions.getDescription().setEnabled(false); // Ẩn chữ description
@@ -238,6 +246,9 @@ public class HomeFragment extends Fragment {
         pieChartConversions.setCenterTextSize(12f);
         pieChartConversions.setHoleRadius(40f); // Độ rộng của lỗ tròn ở giữa
         pieChartConversions.setTransparentCircleRadius(45f);
+
+        // 👉 Tắt hoàn toàn chú thích mặc định (vì đã có XML lo)
+        pieChartConversions.getLegend().setEnabled(false);
 
         pieChartConversions.animateY(1000); // Hiệu ứng xoay khi load
         pieChartConversions.invalidate(); // Vẽ lại
@@ -406,16 +417,23 @@ public class HomeFragment extends Fragment {
 
         // Đổi tone màu khác (Xanh ngọc, Hổ phách, Đỏ sậm...) để phân biệt với Chiến dịch
         ArrayList<Integer> colors = new ArrayList<>();
-        colors.add(Color.parseColor("#009688")); // Teal
-        colors.add(Color.parseColor("#FFC107")); // Amber
-        colors.add(Color.parseColor("#3F51B5")); // Indigo
-        colors.add(Color.parseColor("#FF5722")); // Deep Orange
-        colors.add(Color.parseColor("#00BCD4")); // Cyan
+        colors.add(Color.parseColor("#F48FB1"));
+        colors.add(Color.parseColor("#CE93D8"));
+        colors.add(Color.parseColor("#80CBC4"));
+        colors.add(Color.parseColor("#FFE082"));
+        colors.add(Color.parseColor("#90CAF9"));
 
         BarDataSet dataSet = new BarDataSet(entries, "");
         dataSet.setColors(colors);
         dataSet.setValueTextSize(12f);
         dataSet.setValueTextColor(Color.BLACK);
+
+        dataSet.setValueFormatter(new com.github.mikephil.charting.formatter.ValueFormatter() {
+            @Override
+            public String getFormattedValue(float value) {
+                return String.valueOf((int) value);
+            }
+        });
 
         BarData data = new BarData(dataSet);
         data.setBarWidth(0.5f);
